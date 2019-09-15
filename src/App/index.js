@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import WelcomeMessage from "./WelcomeMessage.js";
 import AppLayout from "./AppLayout.js";
 import AppBar from "./AppBar.js";
 import {AppProvider} from "./AppProvider";
+import Settings from '../Settings'
 
 class App extends React.Component {
   render() {
@@ -11,7 +11,7 @@ class App extends React.Component {
       <AppLayout>
         <AppProvider>
           <AppBar />
-          <WelcomeMessage />
+          <Settings />
         </AppProvider>
       </AppLayout>
     );
