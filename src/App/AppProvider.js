@@ -22,11 +22,12 @@ export class AppProvider extends React.Component {
   fetchCoins = async () => {
     let coinList = (await cc.coinList()).Data;
     this.setState({coinList});
+    console.log(coinList);
   };
   confirmFavorites = () => {
     this.setState({
       firstVisit: false,
-      page: "dashboard"
+      page: 'dashboard'
     });
     localStorage.setItem(
       "cryptoDash",
@@ -34,12 +35,12 @@ export class AppProvider extends React.Component {
         test: "hell9"
       })
     );
-  };
+  }
 
   savedSettings() {
     let cryptoDashData = JSON.parse(localStorage.getItem("cryptoDash"));
     if (!cryptoDashData) {
-      return { page: "settings", firstVisit: true };
+      return { page: 'settings', firstVisit: true };
     }
     return {};
   }
