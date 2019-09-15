@@ -1,5 +1,6 @@
 import React from "react";
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
+import { AppContext } from "./AppProvider";
 
 const Logo = styled.div`
   font-size: 1.5em;
@@ -17,15 +18,27 @@ const ControlButtonElem = styled.div`
     props.active &&
     css`
       text-shadow: 0px 0px 60px #03ff03;
+      color: #6b97fc;
     `}
 `;
 
 function toProperCase(lower) {
-    return lower.charAt(0).toUpperCase() + lower.substr(1);
+  return lower.charAt(0).toUpperCase() + lower.substr(1);
 }
 
-function ControlButton({ name, active }) {
-  return <ControlButtonElem active={active}>{toProperCase(name)}</ControlButtonElem>;
+function ControlButton({ name }) {
+  return (
+    <AppContext.Consumer>
+      {({ page, setPage }) => (
+        <ControlButtonElem 
+            active={page === name}
+            onClick={() => setPage(name)}
+        >
+          {toProperCase(name)}
+        </ControlButtonElem>
+      )}
+    </AppContext.Consumer>
+  );
 }
 
 export default function() {
@@ -33,8 +46,8 @@ export default function() {
     <Bar>
       <Logo> CryptoDash </Logo>
       <div />
-      <ControlButton active name="Dashboard" />
-      <ControlButton name="Settings" />
+      <ControlButton active name="dashboard" />
+      <ControlButton name="settings" />
     </Bar>
   );
 }
